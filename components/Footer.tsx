@@ -46,9 +46,6 @@ export function Footer() {
                 <a href="#testimonials" className="hover:text-accent transition-colors">Success Stories</a>
               </li>
               <li>
-                <a href="#team" className="hover:text-accent transition-colors">Our Team</a>
-              </li>
-              <li>
                 <a href="#contact" className="hover:text-accent transition-colors">Careers</a>
               </li>
             </ul>
@@ -60,7 +57,7 @@ export function Footer() {
             <ul className="space-y-4 text-sm text-gray-400">
               <li className="flex items-center gap-3">
                 <span className="text-lg">📧</span>
-                <a href="mailto:designrztouch@gmail.com" className="hover:text-white transition-colors">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=designrztouch@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
                   designrztouch@gmail.com
                 </a>
               </li>

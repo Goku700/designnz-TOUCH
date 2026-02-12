@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { EnergyBlastText } from "./EnergyBlastText";
 
 const stats = [
   { label: "Years Experience", value: "12+" },
@@ -54,24 +55,7 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Decorative Background Logo */}
-      <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden">
-        <motion.div
-          className="opacity-20"
-          animate={{ rotateY: 360 }}
-          transition={{
-            duration: 25,
-            ease: "linear",
-            repeat: Infinity,
-          }}
-        >
-          <img
-            src="/logo.png"
-            alt=""
-            className="h-[800px] w-[800px] object-contain"
-          />
-        </motion.div>
-      </div>
+      {/* Decorative Background Logo Removed */}
 
       <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-4 pt-10 text-center">
         <motion.div
@@ -88,37 +72,10 @@ export function Hero() {
               }}
               className="font-mono text-sm uppercase tracking-[0.4em] text-[color:var(--text-secondary)]"
             >
-              Branding • Digital Marketing • Web Design
+              Digital Marketing • Web Design • Traditional Marketing
             </motion.p>
 
-            <h1 className="font-primary text-[56px] leading-tight tracking-tight text-[color:var(--text-primary)] sm:text-[72px] md:text-[90px] lg:text-[100px] overflow-hidden">
-              <span className="block font-bold bg-clip-text text-transparent bg-[linear-gradient(90deg,#4a90e2,#4caf50,#ff9800,#9c27b0,#e91e63)] pb-2">
-                <motion.span
-                  className="inline-block"
-                  initial={{ y: -100, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: "backOut" }}
-                >
-                  Designrz
-                </motion.span>{" "}
-                <motion.span
-                  className="inline-block"
-                  initial={{ y: 100, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: "backOut", delay: 0.1 }}
-                >
-                  TOUCH
-                </motion.span>
-              </span>
-              <motion.span
-                initial={{ opacity: 0, filter: "blur(10px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="mt-2 block text-3xl font-light text-[color:var(--text-secondary)] sm:text-4xl md:text-5xl"
-              >
-                Your Brand. Our Strategy. Real Results.
-              </motion.span>
-            </h1>
+            <EnergyBlastText />
           </div>
 
           <motion.p

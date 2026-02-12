@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const testimonials = [
   {
@@ -55,9 +55,35 @@ const testimonials = [
 ];
 
 export function Testimonials() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
   // Triple the items to ensure smooth infinite loop on wide screens
   const marqueeItems = [...testimonials, ...testimonials, ...testimonials];
-  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationFrameId: number;
+
+    const autoScroll = () => {
+      // Auto-scroll on infinite loop
+      // If user is interacting (paused), we don't increment
+      if (!isPaused && scrollContainer) {
+        scrollContainer.scrollLeft += 1;
+
+        // Reset loop
+        if (scrollContainer.scrollLeft >= (scrollContainer.scrollWidth / 3)) {
+          scrollContainer.scrollLeft = 0;
+        }
+      }
+      animationFrameId = requestAnimationFrame(autoScroll);
+    };
+
+    animationFrameId = requestAnimationFrame(autoScroll);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isPaused]);
 
   return (
     <section
@@ -94,16 +120,18 @@ export function Testimonials() {
         </div>
 
         {/* Marquee Container */}
-        {/* We use a click handler on the container to toggle pause state */}
         <div
-          className="relative w-full overflow-hidden cursor-pointer"
-          onClick={() => setIsPaused(!isPaused)}
-          title="Click to pause/play"
+          ref={scrollRef}
+          className="relative w-full overflow-x-auto cursor-pointer [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
         >
           <div
-            className={`flex gap-8 w-max animate-marquee ${isPaused ? "paused" : ""}`}
+            className="flex gap-8 w-max pl-4"
             style={{
-              marginLeft: "1rem", // Slight offset
+              // No inline styles needed
             }}
           >
             {marqueeItems.map((t, idx) => (
@@ -145,4 +173,3 @@ export function Testimonials() {
     </section>
   );
 }
-

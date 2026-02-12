@@ -1,10 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Category = "All" | "Branding & Identity" | "Digital Marketing" | "Web Design & Development" | "Traditional & Print Marketing";
-
 const filters: Category[] = [
   "All",
   "Branding & Identity",
@@ -77,14 +76,42 @@ const projects = [
     category: "Traditional & Print Marketing" as Category,
     image: "https://images.pexels.com/photos/172282/pexels-photo-172282.jpeg?auto=compress&cs=tinysrgb&w=800",
     description: "Sustainable, eye-catching packaging design for retail expansion."
+  },
+  {
+    id: 9,
+    title: "Elevate Digital Experience",
+    client: "Elevate",
+    category: "Web Design & Development" as Category,
+    image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800",
+    description: "Immersive web experience for a high-end lifestyle brand."
   }
 ];
 
 export function Portfolio() {
+  // Debug: Ensure projects are updating
+  console.log("Portfolio projects count:", projects.length);
   const [active, setActive] = useState<Category>("All");
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const filtered =
     active === "All" ? projects : projects.filter((p) => p.category === active);
+
+  // Lock body scroll and handle ESC key when modal is open
+  useEffect(() => {
+    if (selectedId) {
+      document.body.style.overflow = "hidden";
+      const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setSelectedId(null);
+      };
+      window.addEventListener("keydown", handleEsc);
+      return () => {
+        document.body.style.overflow = "auto";
+        window.removeEventListener("keydown", handleEsc);
+      };
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [selectedId]);
 
   return (
     <section id="portfolio" className="bg-background py-20 sm:py-24 md:py-28 relative overflow-hidden">
@@ -111,14 +138,14 @@ export function Portfolio() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 w-full sm:flex sm:flex-wrap sm:justify-center sm:gap-2 sm:w-auto">
+          <div className="flex w-full overflow-x-auto gap-3 pb-4 sm:pb-0 sm:flex-wrap sm:justify-center sm:gap-2 sm:w-auto snap-x snap-mandatory scroll-pl-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {filters.map((filter) => {
               const selected = active === filter;
               return (
                 <button
                   key={filter}
                   onClick={() => setActive(filter)}
-                  className={`rounded-full px-3 py-2.5 text-xs sm:px-5 sm:py-2 sm:text-sm font-semibold transition-all duration-300 w-full sm:w-auto flex items-center justify-center text-center h-full sm:h-auto ${selected
+                  className={`snap-start rounded-full px-5 py-2.5 text-xs sm:px-5 sm:py-2 sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap flex-shrink-0 flex items-center justify-center text-center ${selected
                     ? "bg-gray-900 text-white shadow-lg scale-105"
                     : "bg-white text-gray-600 hover:bg-gray-100 hover:text-gray-900 border border-gray-200"
                     }`}
@@ -130,40 +157,36 @@ export function Portfolio() {
           </div>
         </motion.div>
 
-        <AnimatePresence mode="popLayout">
-          <motion.div
-            layout
-            className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
-          >
+        <motion.div
+          layout
+          className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          <AnimatePresence mode="popLayout">
             {filtered.map((project) => (
               <motion.article
+                layoutId={`card-${project.id}`}
                 key={project.id}
-                layout
+                onClick={() => setSelectedId(project.id)}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -6, scale: 1.03 }}
                 transition={{ duration: 0.3 }}
-                className="group relative overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-gray-200"
+                className="group relative overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-gray-200 cursor-pointer"
               >
-                <div className="relative h-64 overflow-hidden sm:h-72">
-                  <div
-                    className="h-full w-full bg-cover bg-center transition duration-700 group-hover:scale-110"
-                    style={{
-                      backgroundImage: `url(${project.image})`
-                    }}
+                <div className="relative h-64 overflow-hidden sm:h-72 pointer-events-none">
+                  <motion.div
+                    className="h-full w-full bg-cover bg-center transition duration-700"
+                    style={{ backgroundImage: `url(${project.image})` }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
-
-                  {/* Category Tag Overlay */}
                   <div className="absolute top-4 left-4">
                     <span className="inline-block rounded-full bg-white/20 backdrop-blur-md border border-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
                       {project.category}
                     </span>
                   </div>
                 </div>
-
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                <div className="absolute inset-0 flex flex-col justify-end p-6 pointer-events-none">
                   <div className="transform translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
                     <p className="font-mono text-xs font-bold uppercase tracking-widest text-accent mb-2">
                       {project.client}
@@ -176,7 +199,117 @@ export function Portfolio() {
                 </div>
               </motion.article>
             ))}
-          </motion.div>
+          </AnimatePresence>
+        </motion.div>
+
+        <AnimatePresence>
+          {selectedId && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedId(null)}
+                className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+              />
+              <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center p-0 sm:p-4 pointer-events-none">
+                <motion.div
+                  layoutId={`card-${selectedId}`}
+                  transition={{ duration: 0.45, ease: "easeInOut" }}
+                  className="w-full max-w-4xl bg-white rounded-t-[2rem] sm:rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh] pointer-events-auto"
+                >
+                  <button
+                    onClick={() => setSelectedId(null)}
+                    className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors backdrop-blur-sm"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+
+                  <div className="h-64 sm:h-80 w-full relative shrink-0">
+                    <motion.div
+                      className="h-full w-full bg-cover bg-center"
+                      style={{ backgroundImage: `url(${projects.find(p => p.id === selectedId)?.image})` }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                    <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 text-white max-w-2xl">
+                      <motion.span
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="inline-block rounded-full bg-accent/90 backdrop-blur-md px-3 py-1 text-xs font-bold uppercase tracking-wider text-white mb-3"
+                      >
+                        {projects.find(p => p.id === selectedId)?.category}
+                      </motion.span>
+                      <motion.h2
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-3xl md:text-5xl font-bold leading-tight"
+                      >
+                        {projects.find(p => p.id === selectedId)?.title}
+                      </motion.h2>
+                    </div>
+                  </div>
+
+                  <div className="flex-1 overflow-y-auto bg-white p-6 sm:p-8">
+                    <div className="flex flex-col md:flex-row gap-8">
+                      <div className="md:w-2/3 space-y-6">
+                        <motion.p
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.3 }}
+                          className="text-lg text-gray-700 leading-relaxed font-medium"
+                        >
+                          {projects.find(p => p.id === selectedId)?.description}
+                        </motion.p>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.4 }}
+                          className="space-y-4 text-gray-600 leading-relaxed"
+                        >
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                          </p>
+                          <p>
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                          </p>
+                        </motion.div>
+                      </div>
+
+                      <div className="md:w-1/3 space-y-6">
+                        <motion.div
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.5 }}
+                        >
+                          <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Project Info</h4>
+                          <div className="space-y-4">
+                            <div>
+                              <span className="block text-xs text-gray-400 uppercase tracking-wider mb-1">Client</span>
+                              <span className="text-sm font-semibold text-gray-900 block">
+                                {projects.find(p => p.id === selectedId)?.client}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="block text-xs text-gray-400 uppercase tracking-wider mb-1">Year</span>
+                              <span className="text-sm font-semibold text-gray-900 block">2026</span>
+                            </div>
+                            <div>
+                              <span className="block text-xs text-gray-400 uppercase tracking-wider mb-1">Role</span>
+                              <span className="text-sm font-semibold text-gray-900 block">Design & Dev</span>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </>
+          )}
         </AnimatePresence>
       </div>
     </section>
