@@ -31,18 +31,18 @@ body {
   font-family: var(--font-plus-jakarta), "Inter", sans-serif;
 }
 
-@media (pointer: fine) {
-  body {
-    cursor: none;
-  }
+/* Cursor Logic */
+body {
+  cursor: none !important;
+}
 
-  a,
-  button,
-  input,
-  textarea,
-  select {
-    cursor: none;
-  }
+a,
+button,
+input,
+textarea,
+select,
+.cursor-pointer {
+  cursor: none !important;
 }
 
 /* UTILITIES */

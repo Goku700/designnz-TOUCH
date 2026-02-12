@@ -8,15 +8,6 @@ export const CustomCursor = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // 1. Mobile/Touch Detection (Refined for Hybrid Devices)
-        // We only disable if the primary pointer is coarse (like a phone/tablet)
-        // We DO NOT disable on maxTouchPoints > 0 to support touch-enabled laptops
-        const isTouch =
-            typeof window !== "undefined" &&
-            window.matchMedia("(pointer: coarse)").matches;
-
-        if (isTouch) return;
-
         setIsVisible(true);
 
         const onMouseMove = (e: MouseEvent) => {
@@ -87,7 +78,7 @@ export const CustomCursor = () => {
     return (
         <div
             ref={cursorRef}
-            className="fixed pointer-events-none z-[9999] top-0 left-0 mix-blend-exclusion"
+            className="fixed pointer-events-none z-[99999] top-0 left-0 mix-blend-exclusion"
             style={{
                 width: "24px",
                 height: "14px",

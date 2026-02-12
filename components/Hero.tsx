@@ -62,17 +62,7 @@ export function Hero() {
           viewport={{ once: false, amount: 0.3 }}
           className="flex flex-col items-center space-y-8"
         >
-          <div className="space-y-4 pt-10">
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, scale: 0.9 },
-                visible: { opacity: 1, scale: 1, transition: { duration: 0.8 } }
-              }}
-              className="font-mono text-sm uppercase tracking-[0.4em] text-[color:var(--text-secondary)]"
-            >
-              Digital Marketing • Web Design • Traditional Marketing
-            </motion.p>
-
+          <div className="space-y-4">
             <EnergyBlastText />
           </div>
 
@@ -98,10 +88,27 @@ export function Hero() {
             >
               Start Your Journey
             </a>
-            <button className="group flex items-center gap-3 text-xs font-mono uppercase tracking-[0.3em] text-[color:var(--text-secondary)] hover:text-[color:var(--text-primary)] transition-colors">
-              <span className="h-px w-12 bg-gray-300 transition-all group-hover:bg-gold group-hover:w-16" />
+            <button className="group flex items-center justify-center gap-3 text-xs font-mono uppercase tracking-[0.3em] text-[color:var(--text-secondary)] hover:text-[color:var(--text-primary)] transition-colors">
+              <span className="hidden sm:block h-px w-12 bg-gray-300 transition-all group-hover:bg-gold group-hover:w-16" />
               Scroll to Explore
             </button>
+
+            {/* Mobile Scroll Indicator (Double Chevron) */}
+            <motion.a
+              href="#services"
+              className="flex flex-col items-center justify-center gap-1 md:hidden text-[var(--accent-gold)] cursor-pointer"
+              animate={{ y: [0, 8, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 13l5 5 5-5" />
+                <path d="M7 6l5 5 5-5" />
+              </svg>
+            </motion.a>
           </motion.div>
         </motion.div>
       </div>
