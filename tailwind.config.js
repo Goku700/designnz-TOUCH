@@ -25,12 +25,12 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["'Plus Jakarta Sans'", "system-ui", "sans-serif"],
         mono: ["SF Mono", "Menlo", "monospace"],
-        primary: ["Space Grotesk", "system-ui", "sans-serif"],
-        body: ["Inter", "system-ui", "sans-serif"],
-        grotesk: ["Space Grotesk", "sans-serif"],
-        inter: ["Inter", "sans-serif"]
+        primary: ["Outfit", "system-ui", "sans-serif"],
+        body: ["'Plus Jakarta Sans'", "system-ui", "sans-serif"],
+        grotesk: ["Outfit", "sans-serif"],
+        inter: ["'Plus Jakarta Sans'", "sans-serif"]
       },
       boxShadow: {
         glow: "0 0 35px rgba(255, 178, 0, 0.35)",

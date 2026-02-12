@@ -1,5 +1,22 @@
 import type { Metadata } from "next";
+import { Outfit, Plus_Jakarta_Sans } from "next/font/google"; // Import fonts
 import "./globals.css";
+
+
+import { CustomCursor } from "@/components/CustomCursor";
+
+// Configure fonts
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Designrz TOUCH",
@@ -32,8 +49,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={`${outfit.variable} ${plusJakartaSans.variable}`}>
+      <body>
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }

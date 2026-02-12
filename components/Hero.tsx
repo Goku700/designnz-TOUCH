@@ -31,7 +31,7 @@ export function Hero() {
       className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--bg-primary)] hero-gradient pt-0"
     >
       {/* Particles */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 z-0">
         {particleSeeds.map((seed, i) => (
           <motion.div
             key={i}
@@ -54,8 +54,6 @@ export function Hero() {
           />
         ))}
       </div>
-
-      {/* Decorative Background Logo Removed */}
 
       <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-4 pt-10 text-center">
         <motion.div

@@ -8,12 +8,12 @@ export const CustomCursor = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // 1. Mobile/Touch Detection (Strict)
+        // 1. Mobile/Touch Detection (Refined for Hybrid Devices)
+        // We only disable if the primary pointer is coarse (like a phone/tablet)
+        // We DO NOT disable on maxTouchPoints > 0 to support touch-enabled laptops
         const isTouch =
             typeof window !== "undefined" &&
-            ("ontouchstart" in window ||
-                navigator.maxTouchPoints > 0 ||
-                window.matchMedia("(pointer: coarse)").matches);
+            window.matchMedia("(pointer: coarse)").matches;
 
         if (isTouch) return;
 
