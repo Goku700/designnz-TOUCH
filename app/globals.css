@@ -31,18 +31,20 @@ body {
   font-family: var(--font-plus-jakarta), "Inter", sans-serif;
 }
 
-/* Cursor Logic */
-body {
-  cursor: none !important;
-}
+/* Cursor Logic - Desktop Only */
+@media (min-width: 1024px) {
+  body {
+    cursor: none !important;
+  }
 
-a,
-button,
-input,
-textarea,
-select,
-.cursor-pointer {
-  cursor: none !important;
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  .cursor-pointer {
+    cursor: none !important;
+  }
 }
 
 /* UTILITIES */

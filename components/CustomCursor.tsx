@@ -78,7 +78,7 @@ export const CustomCursor = () => {
     return (
         <div
             ref={cursorRef}
-            className="fixed pointer-events-none z-[99999] top-0 left-0 mix-blend-exclusion"
+            className="hidden lg:block fixed pointer-events-none z-[99999] top-0 left-0 mix-blend-exclusion"
             style={{
                 width: "24px",
                 height: "14px",

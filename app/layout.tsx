@@ -4,6 +4,7 @@ import "./globals.css";
 
 
 import { CustomCursor } from "@/components/CustomCursor";
+import { WhatsAppWidget } from "@/components/WhatsAppWidget";
 
 // Configure fonts
 const outfit = Outfit({
@@ -53,6 +54,7 @@ export default function RootLayout({
       <body>
         <CustomCursor />
         {children}
+        <WhatsAppWidget />
       </body>
     </html>
   );

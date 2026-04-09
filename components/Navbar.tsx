@@ -5,11 +5,12 @@ import Link from "next/link";
 import { useState } from "react";
 
 const links = [
-  { href: "#hero", label: "Home" },
-  { href: "#services", label: "Services" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#about", label: "About" },
-  { href: "#testimonials", label: "Stories" }
+  { href: "/#hero", label: "Home" },
+  { href: "/#services", label: "Services" },
+  { href: "/#portfolio", label: "Portfolio" },
+  { href: "/#about", label: "About" },
+  { href: "/#testimonials", label: "Stories" },
+  { href: "/gallery", label: "Gallery" }
 ];
 
 export function Navbar() {
@@ -23,7 +24,7 @@ export function Navbar() {
       className="fixed top-0 w-full z-50 backdrop-blur-md bg-white/90 border-b border-gray-200"
     >
       <div className="container flex justify-between items-center h-20">
-        <Link href="#hero" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <img src="/logo.png" alt="Designrz Touch Logo" className="h-12 w-12 sm:h-14 sm:w-14 object-contain" />
           <h1 className="text-2xl sm:text-3xl font-primary font-bold bg-gradient-to-r from-gray-900 to-yellow-500 bg-clip-text text-transparent tracking-tight">
             Designrz TOUCH
@@ -36,12 +37,13 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
+              {...(link as any).target ? { target: (link as any).target, rel: "noopener noreferrer" } : {}}
               className="text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors"
             >
               {link.label}
             </a>
           ))}
-          <a href="#contact" className="btn-gold text-sm">
+          <a href="/#contact" className="btn-gold text-sm">
             Get Quote
           </a>
         </div>
@@ -82,6 +84,7 @@ export function Navbar() {
                   <motion.a
                     key={link.href}
                     href={link.href}
+                    {...(link as any).target ? { target: (link as any).target, rel: "noopener noreferrer" } : {}}
                     onClick={() => setIsOpen(false)}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -92,7 +95,7 @@ export function Navbar() {
                   </motion.a>
                 ))}
                 <motion.a
-                  href="#contact"
+                  href="/#contact"
                   onClick={() => setIsOpen(false)}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
