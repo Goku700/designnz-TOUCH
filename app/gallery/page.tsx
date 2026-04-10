@@ -8,18 +8,23 @@ import { Footer } from "@/components/Footer";
 
 const galleryItems = [
     { id: 1, type: "image", src: "/service/Bucket Design.jpeg", title: "Bucket Design" },
+    { id: 2, type: "image", src: "/service/instagram-flat-post-mocku.jpeg", title: "Instagram Post Design" },
+    { id: 3, type: "image", src: "/service/MockuuupsTwobusinesscardmockupsonadeskwithstationery.jpeg", title: "Business Card Context" },
     { id: 4, type: "image", src: "/service/KMS_VC.jpg.jpeg", title: "KMS Visiting Card" },
-    { id: 5, type: "image", src: "/service/Mockuuups Business card mockup in hands against neutral background.jpeg", title: "Business Card Mockup" },
-    { id: 6, type: "image", src: "/service/Mockuuups Two business card mockups on a desk with stationery.jpeg", title: "Stationery Mockup" },
+    { id: 5, type: "image", src: "/service/MockuuupsBusinesscardmockupinhandsagainstneutralbackground.jpeg", title: "Handheld Business Card" },
+    { id: 6, type: "image", src: "/service/A5_Doubleside_Flyer_01.jpg (1).jpeg", title: "A5 Double Sided Flyer" },
     { id: 7, type: "image", src: "/service/Offer Banner Design.jpg.jpeg", title: "Offer Banner" },
     { id: 8, type: "image", src: "/service/Premium Bucket Design.jpeg", title: "Premium Bucket Design" },
     { id: 9, type: "image", src: "/service/Rollups-Stands.jpg.jpeg", title: "Rollups & Stands" },
     { id: 10, type: "image", src: "/service/Street-Billboard-A5 ratio size.jpg.jpeg", title: "Street Billboard" },
     { id: 11, type: "image", src: "/service/T_Shirt Design.jpg.jpeg", title: "T-Shirt Design" },
     { id: 12, type: "image", src: "/service/Visiting Cards Mockup.jpeg", title: "Visiting Cards Mockup" },
+    { id: 13, type: "image", src: "/service/ClothBagDesig.jpeg", title: "Cloth Bag Design" },
     { id: 14, type: "image", src: "/service/instagram-post-mockup.png", title: "Instagram Post Mockup" },
-    { id: 15, type: "image", src: "/service/instagram-post-on-smartphone-screen-mockup.png", title: "Smartphone Mockup" },
+    { id: 15, type: "image", src: "/service/instagram-post-on-smartphone-screen-mockup (1).png", title: "Smartphone App Mockup" },
     { id: 16, type: "image", src: "/service/simple-stationery-mockup.png", title: "Simple Stationery Mockup" },
+    { id: 17, type: "image", src: "/service/Mockuuups Business card mockup in hands against neutral background.jpeg", title: "Business Card Mockup" },
+    { id: 18, type: "image", src: "/service/Mockuuups Two business card mockups on a desk with stationery.jpeg", title: "Stationery Mockup" },
 ];
 
 export default function GalleryPage() {

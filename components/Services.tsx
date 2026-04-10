@@ -1,14 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ReactNode, useState, useEffect } from "react";
 
 const services: {
+  id: number;
   title: string;
   icon: ReactNode;
   points: string[];
+  details: string;
 }[] = [
     {
+      id: 1,
       title: "Branding & Identity",
       icon: <span className="text-2xl">✨</span>,
       points: [
@@ -16,9 +19,11 @@ const services: {
         "Visual Identity Design",
         "Rebranding",
         "Brand Guidelines"
-      ]
+      ],
+      details: "We build brands that stand out and tell a story. From deep market research and strategic positioning to visual identity and comprehensive brand guidelines, we ensure your brand resonates with your target audience and maintains a consistent, premium presence across all touchpoints."
     },
     {
+      id: 2,
       title: "Digital Marketing",
       icon: <span className="text-2xl">📈</span>,
       points: [
@@ -26,9 +31,11 @@ const services: {
         "Performance Ads (Meta & Google)",
         "Content Strategy Campaigns",
         "SEO & Analytics"
-      ]
+      ],
+      details: "Our data-driven digital marketing strategies are built for conversion. We manage your entire digital presence, from multi-platform social media campaigns and high-ROI performance advertising to technical SEO and content strategies that drive organic growth and customer loyalty."
     },
     {
+      id: 3,
       title: "Web Design & Development",
       icon: <span className="text-2xl">🕸️</span>,
       points: [
@@ -36,9 +43,11 @@ const services: {
         "UI/UX Design",
         "Responsive Layouts",
         "Performance Optimization"
-      ]
+      ],
+      details: "We create high-performance, future-ready websites that deliver exceptional user experiences. Our approach combines cutting-edge technology with intuitive UI/UX design to build responsive, fast-loading, and conversion-optimized web platforms tailored to your business goals."
     },
     {
+      id: 4,
       title: "Traditional & Print Marketing",
       icon: <span className="text-2xl">🖨️</span>,
       points: [
@@ -46,11 +55,31 @@ const services: {
         "Printing Solutions (Posters, Banners)",
         "Packaging Design",
         "Local Market Campaign Planning"
-      ]
+      ],
+      details: "Bring your brand into the physical world with impact. We offer comprehensive offline marketing solutions, including strategic outdoor promotions, high-quality printing services, eco-friendly packaging design, and localized campaign planning to capture your target market's attention."
     }
   ];
 
 export function Services() {
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  // Lock body scroll and handle ESC key when modal is open
+  useEffect(() => {
+    if (selectedId) {
+      document.body.style.overflow = "hidden";
+      const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setSelectedId(null);
+      };
+      window.addEventListener("keydown", handleEsc);
+      return () => {
+        document.body.style.overflow = "auto";
+        window.removeEventListener("keydown", handleEsc);
+      };
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [selectedId]);
+
   return (
     <section
       id="services"
@@ -132,7 +161,9 @@ export function Services() {
         <div className="flex -mx-6 px-6 overflow-x-auto pb-8 snap-x md:grid md:gap-8 md:grid-cols-2 md:lg:grid-cols-4 md:overflow-visible md:pb-0 md:px-0 md:mx-0 hide-scrollbar">
           {services.map((service, index) => (
             <motion.article
+              layoutId={`service-${service.id}`}
               key={service.title}
+              onClick={() => setSelectedId(service.id)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: "-50px" }}
@@ -142,7 +173,7 @@ export function Services() {
                 transition: { duration: 0.4 }
               }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="min-w-[85vw] snap-center group relative flex flex-col justify-between rounded-3xl bg-white/80 backdrop-blur-md p-8 shadow-sm ring-1 ring-gray-200/50 transition-all duration-300 hover:shadow-xl hover:ring-accent/20 md:min-w-0"
+              className="min-w-[85vw] snap-center group relative flex flex-col justify-between rounded-3xl bg-white/80 backdrop-blur-md p-8 shadow-sm ring-1 ring-gray-200/50 transition-all duration-300 hover:shadow-xl hover:ring-accent/20 md:min-w-0 cursor-pointer"
             >
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-transparent to-white/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -170,25 +201,77 @@ export function Services() {
                 </ul>
               </div>
 
-              <div className="relative z-10 mt-8 pt-4 border-t border-gray-100">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-gray-900 transition-colors duration-300 group-hover:text-accent"
-                >
-                  Learn More
-                  <svg
-                    className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
             </motion.article>
           ))}
         </div>
+
+        <AnimatePresence>
+          {selectedId && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedId(null)}
+                className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+              />
+              <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none">
+                <motion.div
+                  layoutId={`service-${selectedId}`}
+                  transition={{ duration: 0.45, ease: "easeInOut" }}
+                  className="w-full max-w-2xl bg-white rounded-[2rem] overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh] pointer-events-auto"
+                >
+                  <button
+                    onClick={() => setSelectedId(null)}
+                    className="absolute top-6 right-6 z-10 p-2 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-900 transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+
+                  <div className="p-8 sm:p-12 overflow-y-auto">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 text-accent mb-8">
+                      {services.find(s => s.id === selectedId)?.icon}
+                    </div>
+
+                    <h2 className="text-3xl font-bold text-gray-900 mb-6 font-primary">
+                      {services.find(s => s.id === selectedId)?.title}
+                    </h2>
+
+                    <div className="space-y-6">
+                      <p className="text-lg text-gray-600 leading-relaxed">
+                        {services.find(s => s.id === selectedId)?.details}
+                      </p>
+
+                      <div>
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-accent mb-4">Core Capabilities</h4>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {services.find(s => s.id === selectedId)?.points.map((point, i) => (
+                            <li key={i} className="flex items-center text-sm text-gray-700">
+                              <span className="mr-3 h-1.5 w-1.5 rounded-full bg-accent" />
+                              {point}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="mt-10 pt-8 border-t border-gray-100">
+                      <a
+                        href="#contact"
+                        onClick={() => setSelectedId(null)}
+                        className="inline-flex items-center justify-center rounded-full bg-gray-900 px-8 py-4 text-sm font-bold text-white shadow-lg transition-all hover:bg-gray-800 hover:scale-105 active:scale-95"
+                      >
+                        Book a Consultation
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

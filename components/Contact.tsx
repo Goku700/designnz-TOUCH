@@ -48,12 +48,13 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          action="https://formsubmit.co/gokulengineer422@gmail.com"
+          action="https://formsubmit.co/designrztouch@gmail.com"
           method="POST"
           className="relative rounded-3xl bg-white/5 backdrop-blur-xl p-8 sm:p-12 shadow-2xl ring-1 ring-white/10"
         >
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_subject" value="New Inquiry from Designrz Touch Website" />
+          <input type="hidden" name="_next" value="http://localhost:3000/thank-you" />
 
           <div className="grid gap-6">
             <div className="grid gap-6 sm:grid-cols-2">

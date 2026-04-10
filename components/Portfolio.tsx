@@ -3,87 +3,96 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
-type Category = "All" | "Branding & Identity" | "Digital Marketing" | "Web Design & Development" | "Traditional & Print Marketing";
+type Category = "All" | "Business Automation" | "Industry Solutions" | "Management Systems" | "Digital Commerce";
 const filters: Category[] = [
   "All",
-  "Branding & Identity",
-  "Digital Marketing",
-  "Web Design & Development",
-  "Traditional & Print Marketing"
+  "Business Automation",
+  "Industry Solutions",
+  "Management Systems",
+  "Digital Commerce"
 ];
 
 const projects = [
   {
     id: 1,
-    title: "Apex Financial Identity",
-    client: "Apex Group",
-    category: "Branding & Identity" as Category,
-    image: "https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=800",
-    description: "Complete visual identity overhaul for a leading fintech firm."
+    title: "Advanced Billing & GST",
+    client: "Retail Connect",
+    category: "Management Systems" as Category,
+    image: "/projects/billing_gst.png",
+    description: "Generate invoices in seconds. Manage inventory and get GST-ready reports instantly.",
+    details: "Our advanced billing solution is designed to streamline your financial operations. It features automated invoice generation, real-time inventory tracking, and one-click GST report generation to ensure your business remains compliant and efficient."
   },
   {
     id: 2,
-    title: "EcoStyle E-Commerce",
-    client: "EcoStyle",
-    category: "Web Design & Development" as Category,
-    image: "https://images.pexels.com/photos/34577/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800",
-    description: "High-conversion Shopify store with custom headless architecture."
+    title: "Smart Restaurant POS",
+    client: "Flavor Flow",
+    category: "Industry Solutions" as Category,
+    image: "/projects/restaurant_pos.png",
+    description: "From table management to kitchen orders (KOT), handle your food business like a pro.",
+    details: "Elevate your dining experience with our intelligent POS system. It offers comprehensive table management, instant Kitchen Order Tickets (KOT), and integrated billing, allowing you to focus on delivering great food while we handle the logistics."
   },
   {
     id: 3,
-    title: "Urban Coffee Social Growth",
-    client: "Urban Coffee",
-    category: "Digital Marketing" as Category,
-    image: "https://images.pexels.com/photos/3769714/pexels-photo-3769714.jpeg?auto=compress&cs=tinysrgb&w=800",
-    description: "300% ROI on Meta ads and organic Instagram growth campaign."
+    title: "Healthcare Systems",
+    client: "MediCare Plus",
+    category: "Industry Solutions" as Category,
+    image: "/projects/healthcare.png",
+    description: "Digitize patient records, manage appointments, and track pharmacy stock effortlessly.",
+    details: "Simplify patient care with our integrated healthcare platform. From digital health records and appointment scheduling to pharmacy stock management, we provide the tools needed to run an efficient medical practice or hospital."
   },
   {
     id: 4,
-    title: "Luxe Realty Brochure",
-    client: "Luxe Estates",
-    category: "Traditional & Print Marketing" as Category,
-    image: "https://images.pexels.com/photos/1765033/pexels-photo-1765033.jpeg?auto=compress&cs=tinysrgb&w=800",
-    description: "Premium tactile brochures for luxury property showcases."
+    title: "Multi-Branch Office",
+    client: "Global Sync",
+    category: "Management Systems" as Category,
+    image: "/projects/multi_branch.png",
+    description: "Monitor multiple locations, sync data across branches, and view real-time reports.",
+    details: "Manage your global footprint with ease. Our multi-branch synchronization software provides real-time visibility across all locations, centralizing data and reporting so you can make informed decisions from anywhere."
   },
   {
     id: 5,
-    title: "TechFlow SaaS Platform",
-    client: "TechFlow",
-    category: "Web Design & Development" as Category,
-    image: "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800",
-    description: "SaaS dashboard design focused on user retention and ease of use."
+    title: "Business Automation",
+    client: "Ops Efficiency",
+    category: "Business Automation" as Category,
+    image: "/projects/automation.png",
+    description: "We build custom bots and scripts to handle repetitive tasks so you can focus on growth.",
+    details: "Transform your workflow with custom automation solutions. We develop specialized bots and scripts that handle repetitive back-office tasks, reducing human error and freeing up your team to focus on strategic growth."
   },
   {
     id: 6,
-    title: "Vitality Health Rebrand",
-    client: "Vitality Corp",
-    category: "Branding & Identity" as Category,
-    image: "https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg?auto=compress&cs=tinysrgb&w=800",
-    description: "Modern, approachable brand system for a healthcare provider."
+    title: "HR & Payroll Hub",
+    client: "People First",
+    category: "Management Systems" as Category,
+    image: "/projects/hr_payroll.png",
+    description: "Automate attendance, salary calculations, and employee document management.",
+    details: "Take the complexity out of people management. Our HR & Payroll Hub automates attendance tracking, salary processing, and employee documentation, ensuring timely payments and total compliance with local labor laws."
   },
   {
     id: 7,
-    title: "Global Logistics SEO",
-    client: "Swift Cargo",
-    category: "Digital Marketing" as Category,
-    image: "https://images.pexels.com/photos/906982/pexels-photo-906982.jpeg?auto=compress&cs=tinysrgb&w=800",
-    description: "Technical SEO strategy resulting in #1 rankings for key industry terms."
+    title: "Edu-Tech Solutions",
+    client: "NextGen Academy",
+    category: "Industry Solutions" as Category,
+    image: "/projects/edutech.png",
+    description: "Comprehensive software for schools to manage admissions, fees, and student progress.",
+    details: "Empower the next generation with our school management suite. We offer a unified platform for admissions, fee management, student progress tracking, and teacher-parent communication, tailored for modern educational institutions."
   },
   {
     id: 8,
-    title: "Artisan Bakery Packaging",
-    client: "Crust & Crumb",
-    category: "Traditional & Print Marketing" as Category,
-    image: "https://images.pexels.com/photos/172282/pexels-photo-172282.jpeg?auto=compress&cs=tinysrgb&w=800",
-    description: "Sustainable, eye-catching packaging design for retail expansion."
+    title: "E-commerce & Web",
+    client: "Market Reach",
+    category: "Digital Commerce" as Category,
+    image: "/projects/ecommerce.png",
+    description: "Get a professional online store with payment gateway integration to sell 24/7.",
+    details: "Launch and scale your online presence with our premium e-commerce solutions. We build high-performance, conversion-optimized stores with secure payment gateway integrations and intuitive user experiences for 24/7 selling."
   },
   {
     id: 9,
-    title: "Elevate Digital Experience",
-    client: "Elevate",
-    category: "Web Design & Development" as Category,
-    image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800",
-    description: "Immersive web experience for a high-end lifestyle brand."
+    title: "Smart Logistics",
+    client: "Swift Track",
+    category: "Industry Solutions" as Category,
+    image: "/projects/logistics.png",
+    description: "Route optimization, vehicle tracking, and real-time delivery management tools.",
+    details: "Optimize your supply chain with real-time tracking and route optimization. Our smart logistics tools help you monitor your fleet, reduce fuel costs, and guarantee on-time deliveries through advanced analytics and fleet management."
   }
 ];
 
@@ -131,10 +140,10 @@ export function Portfolio() {
               Our Work
             </span>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl md:text-5xl font-primary">
-              Selected Projects
+              Solutions Tailored for You
             </h2>
             <p className="mt-4 max-w-2xl text-lg text-gray-600 mx-auto">
-              A showcase of our best work across branding, digital strategy, development, and print.
+              Modernize your operations and stop wasting time on manual paperwork.
             </p>
           </div>
 
@@ -255,7 +264,7 @@ export function Portfolio() {
 
                   <div className="flex-1 overflow-y-auto bg-white p-6 sm:p-8">
                     <div className="flex flex-col md:flex-row gap-8">
-                      <div className="md:w-2/3 space-y-6">
+                      <div className="md:w-full space-y-6">
                         <motion.p
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -271,37 +280,8 @@ export function Portfolio() {
                           className="space-y-4 text-gray-600 leading-relaxed"
                         >
                           <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            {projects.find(p => p.id === selectedId)?.details}
                           </p>
-                          <p>
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                          </p>
-                        </motion.div>
-                      </div>
-
-                      <div className="md:w-1/3 space-y-6">
-                        <motion.div
-                          initial={{ opacity: 0, x: 10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.5 }}
-                        >
-                          <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Project Info</h4>
-                          <div className="space-y-4">
-                            <div>
-                              <span className="block text-xs text-gray-400 uppercase tracking-wider mb-1">Client</span>
-                              <span className="text-sm font-semibold text-gray-900 block">
-                                {projects.find(p => p.id === selectedId)?.client}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="block text-xs text-gray-400 uppercase tracking-wider mb-1">Year</span>
-                              <span className="text-sm font-semibold text-gray-900 block">2026</span>
-                            </div>
-                            <div>
-                              <span className="block text-xs text-gray-400 uppercase tracking-wider mb-1">Role</span>
-                              <span className="text-sm font-semibold text-gray-900 block">Design & Dev</span>
-                            </div>
-                          </div>
                         </motion.div>
                       </div>
                     </div>
