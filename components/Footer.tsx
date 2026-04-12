@@ -72,10 +72,15 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-lg">📍</span>
-                <span>
+                <a
+                  href="https://maps.app.goo.gl/GC3AUjSzLBmGnDD2A?g_st=awb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
                   Trichy, Tamil Nadu<br />
                   India
-                </span>
+                </a>
               </li>
             </ul>
 
