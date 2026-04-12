@@ -9,8 +9,8 @@ const links = [
   { href: "/#services", label: "Services" },
   { href: "/#portfolio", label: "Portfolio" },
   { href: "/#about", label: "About" },
-  { href: "/#testimonials", label: "Stories" },
-  { href: "/#works", label: "Works" }
+  { href: "/#works", label: "Works" },
+  { href: "/#testimonials", label: "Stories" }
 ];
 
 export function Navbar() {
@@ -45,6 +45,29 @@ export function Navbar() {
           ))}
           <a href="/#contact" className="btn-gold text-sm">
             Get Quote
+          </a>
+          <a
+            href="https://www.instagram.com/designrztouch_trichy?igsh=MWFpdnlndmtkc2R1aA%3D%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-600 transition-colors"
+            aria-label="Instagram"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+            </svg>
           </a>
         </div>
 
@@ -103,6 +126,33 @@ export function Navbar() {
                   className="btn-gold text-xl px-8 py-3 mt-6 shadow-xl"
                 >
                   Get Quote
+                </motion.a>
+                <motion.a
+                  href="https://www.instagram.com/designrztouch_trichy?igsh=MWFpdnlndmtkc2R1aA%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.4 }}
+                  className="flex items-center gap-2 text-xl font-primary font-bold text-gray-900 hover:text-yellow-500"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                  </svg>
+                  Instagram
                 </motion.a>
               </div>
             </motion.div>

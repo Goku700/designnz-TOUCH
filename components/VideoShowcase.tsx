@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const videos = [
-    { id: 1, src: "/video/Diwali.mp4", title: "Diwali Special", aspectRatio: "aspect-[9/16] max-w-sm" },
     { id: 2, src: "/video/Drone.mp4", title: "Drone Cinematography", aspectRatio: "aspect-video max-w-5xl" },
+    { id: 1, src: "/video/Diwali.mp4", title: "Diwali Special", aspectRatio: "aspect-[9/16] max-w-sm" },
     { id: 3, src: "/video/KMS Grill chicken 1.mp4", title: "KMS Grill Chicken", aspectRatio: "aspect-[9/16] max-w-sm" },
     { id: 4, src: "/video/Saathukudi Out.mp4", title: "Saathukudi Commercial", aspectRatio: "aspect-[9/16] max-w-sm" },
 ];
@@ -83,11 +83,23 @@ export function VideoShowcase() {
                                 x: { type: "spring", stiffness: 300, damping: 30 },
                                 opacity: { duration: 0.2 }
                             }}
-                            className="absolute inset-0 w-full h-full"
+                            drag="x"
+                            dragConstraints={{ left: 0, right: 0 }}
+                            dragElastic={1}
+                            onDragEnd={(e, { offset, velocity }) => {
+                                const swipe = swipePower(offset.x, velocity.x);
+
+                                if (swipe < -5000) {
+                                    paginate(1);
+                                } else if (swipe > 5000) {
+                                    paginate(-1);
+                                }
+                            }}
+                            className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"
                         >
                             <video
                                 src={videos[currentIndex].src}
-                                className="w-full h-full object-cover bg-black"
+                                className="w-full h-full object-cover bg-black pointer-events-none"
                                 autoPlay
                                 muted
                                 loop

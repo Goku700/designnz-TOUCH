@@ -106,13 +106,13 @@ export function Works() {
                             onDragEnd={(e, { offset, velocity }) => {
                                 const swipe = swipePower(offset.x, velocity.x);
 
-                                if (swipe < -swipeConfidenceThreshold) {
+                                if (swipe < -5000) { // Lowered threshold for better mobile responsiveness
                                     paginate(1);
-                                } else if (swipe > swipeConfidenceThreshold) {
+                                } else if (swipe > 5000) {
                                     paginate(-1);
                                 }
                             }}
-                            className="absolute inset-0 w-full h-full object-cover"
+                            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                         />
                     </AnimatePresence>
 
