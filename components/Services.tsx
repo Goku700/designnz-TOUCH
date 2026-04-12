@@ -247,11 +247,11 @@ export function Services() {
                 onClick={() => setSelectedId(null)}
                 className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
               />
-              <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none">
+              <div className="fixed inset-0 z-[60] flex items-end justify-center sm:items-center p-0 sm:p-4 pointer-events-none">
                 <motion.div
                   layoutId={`service-${selectedId}`}
                   transition={{ duration: 0.45, ease: "easeInOut" }}
-                  className="w-full max-w-2xl bg-white rounded-[2rem] overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh] pointer-events-auto"
+                  className="w-full max-w-2xl bg-white rounded-t-[2rem] sm:rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh] pointer-events-auto"
                 >
                   <button
                     onClick={() => setSelectedId(null)}
