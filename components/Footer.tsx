@@ -48,9 +48,7 @@ export function Footer() {
               <li>
                 <a href="#about" className="hover:text-accent transition-colors">About Us</a>
               </li>
-              <li>
-                <a href="#testimonials" className="hover:text-accent transition-colors">Success Stories</a>
-              </li>
+
             </ul>
           </div>
 
@@ -78,7 +76,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
-                  Trichy, Tamil Nadu<br />
+                  No.8, 2nd Floor, Surya Complex, 9th Cross Main Road Thillai Nagar,(Near HP Petrol Pump), Trichy - 18.<br />
                   India
                 </a>
               </li>
