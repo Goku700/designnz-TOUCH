@@ -32,6 +32,12 @@ export function Footer() {
               <li>
                 <a href="#services" className="hover:text-accent transition-colors">Print & Packaging</a>
               </li>
+              <li>
+                <a href="#services" className="hover:text-accent transition-colors">Business Registrations</a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-accent transition-colors">Compliance & Filings</a>
+              </li>
             </ul>
           </div>
 
@@ -44,9 +50,6 @@ export function Footer() {
               </li>
               <li>
                 <a href="#testimonials" className="hover:text-accent transition-colors">Success Stories</a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-accent transition-colors">Careers</a>
               </li>
             </ul>
           </div>

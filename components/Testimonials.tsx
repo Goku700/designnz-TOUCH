@@ -8,49 +8,49 @@ const testimonials = [
     name: "Arjun Kumar",
     role: "Founder, Spicy Bowl",
     quote:
-      "Designrz Touch completely transformed our brand. From the logo to the menu design, everything feels premium. Our walk-ins increased by 40% in just two months.",
+      "Designrz Touch completely transformed our brand. From the logo to the menu and packaging design, everything feels premium. Our walk-ins increased by 40% in just two months.",
     rating: 5,
     initials: "AK"
   },
   {
-    name: "Sarah Williams",
-    role: "Marketing Head, TechFlow",
+    name: "Senthil Rajan",
+    role: "Marketing Head, TechSolutions",
     quote:
-      "We needed a digital partner who understood ROI. Their performance ads strategy cut our acquisition costs in half while doubling our lead quality.",
+      "Their performance ads and digital marketing strategy cut our customer acquisition costs in half while doubling our lead quality. Highly professional team.",
     rating: 5,
-    initials: "SW"
+    initials: "SR"
   },
   {
-    name: "Dr. Nithya Ram",
+    name: "Dr. Lakshmi Priya",
     role: "Director, CarePlus Clinic",
     quote:
-      "Professional, creative, and strictly deadline-oriented. The rebranding gave us a fresh, trustworthy identity that patients love.",
+      "A complete turnkey solution. The rebranding and the new responsive website gave us a fresh, trustworthy identity that our patients in Trichy love.",
     rating: 5,
-    initials: "NR"
+    initials: "LP"
   },
   {
-    name: "Karthik S.",
+    name: "Karthik Sivakumar",
     role: "CEO, GreenEarth Realty",
     quote:
-      "Their approach to social media is unmatched. The content strategy is engaging, and the visuals are top-notch. Highly recommended!",
+      "Their approach to property marketing is unmatched. The drone cinematography and social media reels they produced for our new project went viral.",
     rating: 5,
     initials: "KS"
   },
   {
-    name: "Priya Menon",
-    role: "Owner, Velvet Boutique",
+    name: "Dr. Sameer Khan",
+    role: "Founder, MediCare",
     quote:
-      "They don't just design; they build a brand story. The packaging design they created has become our customers' favorite thing to share on Instagram.",
+      "They handled our business registration and GST compliance seamlessly. It's rare to find a creative agency that also understands the technicalities of business startup.",
     rating: 5,
-    initials: "PM"
+    initials: "SK"
   },
   {
-    name: "David Chen",
-    role: "Founder, Zenith Fitness",
+    name: "Deepika Rao",
+    role: "Owner, Velvet Boutique",
     quote:
-      "A complete turnkey solution. From the website to the launch event creatives, Designrz Touch handled everything with absolute perfection.",
+      "They don't just design; they build a brand story. The custom web design and social media strategy they created has become a favorite for our online customers.",
     rating: 5,
-    initials: "DC"
+    initials: "DR"
   }
 ];
 
