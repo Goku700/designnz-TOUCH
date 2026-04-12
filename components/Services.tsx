@@ -57,6 +57,38 @@ const services: {
         "Local Market Campaign Planning"
       ],
       details: "Bring your brand into the physical world with impact. We offer comprehensive offline marketing solutions, including strategic outdoor promotions, high-quality printing services, eco-friendly packaging design, and localized campaign planning to capture your target market's attention."
+    },
+    {
+      id: 5,
+      title: "Business Registrations",
+      icon: <span className="text-2xl">📋</span>,
+      points: [
+        "GST Registration",
+        "MSME & FSSAI Registration & Renewal",
+        "PAN, TAN & Professional Tax"
+      ],
+      details: "Seamlessly navigate the complexities of business setup. We handle end-to-end registrations including GST, MSME, FSSAI, and tax-related IDs like PAN and TAN, ensuring your business is legally compliant from day one."
+    },
+    {
+      id: 6,
+      title: "Compliance & Filings",
+      icon: <span className="text-2xl">📑</span>,
+      points: [
+        "GST Return Filing (Monthly/Quarterly/Annual)",
+        "Income Tax Return (ITR) Filing",
+        "TDS & TCS Compliance"
+      ],
+      details: "Stay ahead of regulatory requirements with our expert compliance services. We manage all your statutory filings, including regular GST returns, annual Income Tax returns, and rigorous TDS/TCS compliance to prevent penalties and ensure smooth operations."
+    },
+    {
+      id: 7,
+      title: "Employee & Digital Services",
+      icon: <span className="text-2xl">👤</span>,
+      points: [
+        "ESI Registration & PF Claims",
+        "DSC Registration (eMudhra)"
+      ],
+      details: "Optimize your workforce management and digital security. Our services cover everything from ESI and PF registrations and claims to providing secure Digital Signature Certificates (DSC) through eMudhra, empowering your business in the digital era."
     }
   ];
 
@@ -158,7 +190,7 @@ export function Services() {
           </p>
         </motion.div>
 
-        <div className="flex -mx-6 px-6 overflow-x-auto pb-8 snap-x md:grid md:gap-8 md:grid-cols-2 md:lg:grid-cols-4 md:overflow-visible md:pb-0 md:px-0 md:mx-0 hide-scrollbar">
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 overflow-visible pb-0 px-0 mx-0">
           {services.map((service, index) => (
             <motion.article
               layoutId={`service-${service.id}`}
@@ -173,7 +205,7 @@ export function Services() {
                 transition: { duration: 0.4 }
               }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="min-w-[85vw] snap-center group relative flex flex-col justify-between rounded-3xl bg-white/80 backdrop-blur-md p-8 shadow-sm ring-1 ring-gray-200/50 transition-all duration-300 hover:shadow-xl hover:ring-accent/20 md:min-w-0 cursor-pointer"
+              className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] min-h-[320px] group relative flex flex-col justify-between rounded-3xl bg-white/80 backdrop-blur-md p-8 shadow-sm ring-1 ring-gray-200/50 transition-all duration-300 hover:shadow-xl hover:ring-accent/20 cursor-pointer"
             >
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-transparent to-white/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 

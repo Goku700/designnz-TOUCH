@@ -241,7 +241,7 @@ export default function PrivacyPolicy() {
                                 <p>If you have any questions about this Privacy Policy, You can contact us:</p>
                                 <ul className="list-disc pl-6 space-y-2">
                                     <li>By email: <a href="mailto:designrztouch@gmail.com" className="text-[var(--accent-gold)] hover:underline">designrztouch@gmail.com</a></li>
-                                    <li>By phone number: +91 70107 76767</li>
+                                    <li>By phone number: +91 7806886767</li>
                                 </ul>
                             </section>
                         </div>
